@@ -10,6 +10,7 @@ router.get("/", indexController.getIndex);
 router.get("/signup", indexController.getSignup);
 
 // POST signup
+router.post("/signup", indexController.postSignup);
 
 // GET login
 router.get("/login", indexController.getLogin);
