@@ -5,11 +5,27 @@
     <%- include('partials/header') %>
     <main>
       <h1>Signup</h1>
+      <%- include('partials/errors')%>
       <form action="" method="post">
         <label for="email">Email:</label>
-        <input type="email" name="email" id="email" />
+        <input
+          type="email"
+          name="email"
+          id="email"
+          minlength="1"
+          maxlength="50"
+          placeholder="Max. 50 characters"
+          value="<%= (locals.fields) ? fields.email : '' %>"
+        />
         <label for="password">Password:</label>
-        <input type="password" name="password" id="password" />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          minlength="1"
+          maxlength="20"
+          placeholder="Max. 20 characters"
+        />
         <label for="confirmPassword">Re-enter password:</label>
         <input type="password" name="confirmPassword" id="confirmPassword" />
         <button>Submit</button>
