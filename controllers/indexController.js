@@ -18,7 +18,7 @@ exports.getSignup = asyncHandler(async (req, res) => {
 exports.postSignup = [
   validateUserForm,
   asyncHandler(async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     const errors = validationResult(req);
     // If errors, rerender form and display errors
     if (!errors.isEmpty()) {
@@ -39,8 +39,6 @@ exports.postSignup = [
                 password: hashedPassword,
               },
             });
-            const users = await prisma.user.findMany()
-            console.log(users)
             res.redirect("/login");
           }
         });
