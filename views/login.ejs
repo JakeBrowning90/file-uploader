@@ -5,11 +5,12 @@
     <%- include('partials/header') %>
     <main>
       <h1>Login</h1>
-      <form action="">
-        <label for="">Email:</label>
-        <input type="email" name="" id="" />
-        <label for="">Password:</label>
-        <input type="password" name="" id="" />
+      <form action="/login" method="post">
+        <label for="username">Username:</label>
+        <input type="email" name="username" id="username" />
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" />
+        <button>Submit</button>
       </form>
     </main>
   </body>

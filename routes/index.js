@@ -16,6 +16,10 @@ router.post("/signup", indexController.postSignup);
 router.get("/login", indexController.getLogin);
 
 // POST login
+router.post("/login", indexController.postLogin);
+
+// GET logout
+router.get("/logout", indexController.getLogout);
 
 // GET about
 router.get("/about", indexController.getAbout);

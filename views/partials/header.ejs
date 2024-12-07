@@ -1,8 +1,15 @@
 <header>
   <nav>
     <a href="/">File Uploader</a>
+
+    <% if (locals.currentUser) { %>
+    <p><%= currentUser.email %></p>
+    <a href="/logout">Logout</a>
+    <% } else { %>
     <a href="/signup">Sign up or Username</a>
-    <a href="/login">Login or Logout</a>
+    <a href="/login">Login</a>
+    <% } %>
+
     <a href="/about">About</a>
   </nav>
 </header>
