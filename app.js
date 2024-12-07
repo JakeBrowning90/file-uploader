@@ -41,9 +41,11 @@ app.use((req, res, next) => {
 
 // Routers
 const indexRouter = require("./routes/index");
-// const fileRouter = require("./routes/file")
+const fileRouter = require("./routes/file")
 
 app.use("/", indexRouter);
+app.use("/file", fileRouter);
+
 
 app.get("*", (req, res, next) => {
   res.render("404", { title: "404 Error" });

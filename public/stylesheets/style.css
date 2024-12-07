@@ -1,3 +1,21 @@
+/* html, body {
+    height: 100%;
+} */
+
 header {
-    background-color: rgb(218, 218, 255);
+  background-color: rgb(218, 218, 255);
+}
+
+main {
+  background-color: rgb(170, 238, 253);
+
+  display: flex;
+  flex-direction: row;
+}
+
+.formBar,
+.formBar > form {
+  background-color: rgb(168, 168, 212);
+  display: flex;
+  flex-direction: column;
 }
