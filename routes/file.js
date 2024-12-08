@@ -6,10 +6,14 @@ const fileController = require("../controllers/fileController");
 // Create file
 router.post("/create", fileController.createFile);
 
-// Read file
+// Read ALL files
+
+// Read ONE file
 
 // Update file
 
 // Delete file
+router.post("/delete/:id", fileController.deleteFile);
+
 
 module.exports = router;

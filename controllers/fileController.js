@@ -5,11 +5,8 @@ const asyncHandler = require("express-async-handler");
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
+// TODO: check authentication for path
 exports.createFile = asyncHandler(async (req, res) => {
-  console.log("File created");
-  console.log(req.file);
-  console.log(req.user);
-
   await prisma.file.create({
     data: {
       name: req.file.filename,
@@ -20,5 +17,15 @@ exports.createFile = asyncHandler(async (req, res) => {
       },
     },
   });
+  res.redirect("/");
+});
+
+exports.deleteFile = asyncHandler(async (req, res) => {
+  await prisma.file.delete({
+    where: {
+      id: parseInt(req.params.id),
+    },
+  });
+  console.log("File deleted!");
   res.redirect("/");
 });

@@ -7,6 +7,19 @@
       <%- include('partials/formBar') %>
 
       <h1>Index</h1>
+      <ul>
+        <% if (locals.files) { %> <% files.forEach((file) => {%>
+        <li>
+          <p><%= file.name %></p>
+          <p><%= file.size / 1000 %> KB</p>
+          <p><%= file.timestamp %></p>
+          <!-- <img src="<%= file.url %>"" alt=""> -->
+          <form action="/file/delete/<%= file.id %>" method="post">
+            <button>Delete</button>
+          </form>
+        </li>
+        <%})%> <% } %>
+      </ul>
     </main>
   </body>
 </html>
