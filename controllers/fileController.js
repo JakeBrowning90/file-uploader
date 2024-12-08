@@ -7,5 +7,7 @@ const prisma = new PrismaClient();
 
 exports.createFile = asyncHandler(async (req, res) => {
   console.log("File created");
+  console.log(req.file);
+
   res.redirect("/");
 });
