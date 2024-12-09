@@ -8,6 +8,12 @@
       <h1>Folder Detail:</h1>
       <% if (locals.folder) { %>
       <h1><%= folder.name %></h1>
+      <form action="/folder/edit/<%= folder.id %>" method="post">
+        <button>Edit</button>
+      </form>
+      <form action="/folder/delete/<%= folder.id %>" method="post">
+        <button>Delete</button>
+      </form>
       <% } %>
     </main>
   </body>
