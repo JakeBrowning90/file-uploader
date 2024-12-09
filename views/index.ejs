@@ -7,6 +7,15 @@
       <%- include('partials/formBar') %>
 
       <h1>Index</h1>
+
+      <ul>
+        <% if (locals.folders) { %> <% folders.forEach((folder) => {%>
+        <li>
+          <a href="/folder/<%= folder.id %>"><%= folder.name %></a>
+        </li>
+        <%})%> <% } %>
+      </ul>
+
       <ul>
         <% if (locals.files) { %> <% files.forEach((file) => {%>
         <li>

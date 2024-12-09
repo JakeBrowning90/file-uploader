@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head') %>
+  <body>
+    <%- include('partials/header') %>
+    <main>
+      <%- include('partials/formBar') %>
+      <h1>Folder Detail:</h1>
+      <% if (locals.folder) { %>
+      <h1><%= folder.name %></h1>
+      <% } %>
+    </main>
+  </body>
+</html>

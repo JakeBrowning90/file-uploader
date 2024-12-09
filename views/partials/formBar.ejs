@@ -2,10 +2,12 @@
   <form action="/file/create"  method="POST" enctype="multipart/form-data">
     <label for="file">New File</label>
     <input type="file" name="file" required/>
+    <label for="folderSelect">Folder:</label>
+    <select name="folderSelect" id="folderSelect"></select>
     <button>Submit</button>
   </form>
-  <form action="">
-    <label for="folderCreate">New Folder</label>
+  <form action="/folder/create" method="POST">
+    <label for="folderCreate">Folder</label>
     <input type="text" name="folderCreate" />
     <button>Submit</button>
   </form>
