@@ -12,7 +12,7 @@ router.post("/create", folderController.createFolder);
 router.get("/:id", folderController.readFolder);
 
 // Update folder
-// router.post("/edit/:id", folderController.editFolder);
+router.post("/edit/:id", folderController.editFolder);
 
 // Delete folder
 router.post("/delete/:id", folderController.deleteFolder);

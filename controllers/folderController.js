@@ -6,6 +6,8 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 exports.createFolder = asyncHandler(async (req, res) => {
+  // TODO: Validate folder name
+
   await prisma.folder.create({
     data: {
       name: req.body.folderCreate,
@@ -27,12 +29,22 @@ exports.readFolder = asyncHandler(async (req, res) => {
   });
 });
 
+exports.editFolder = asyncHandler(async (req, res) => {
+  // TODO: Validate new name
+  await prisma.folder.update({
+    where: { id: parseInt(req.params.id) },
+    data: {
+      name: req.body.folderRename,
+    },
+  });
+  res.redirect(`/folder/${req.params.id}`);
+});
+
 exports.deleteFolder = asyncHandler(async (req, res) => {
   await prisma.folder.delete({
     where: {
       id: parseInt(req.params.id),
     },
   });
-  console.log("Folder deleted!");
   res.redirect("/");
 });

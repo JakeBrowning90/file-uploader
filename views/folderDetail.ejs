@@ -9,7 +9,9 @@
       <% if (locals.folder) { %>
       <h1><%= folder.name %></h1>
       <form action="/folder/edit/<%= folder.id %>" method="post">
-        <button>Edit</button>
+        <label for="folderRename">Rename Folder</label>
+        <input type="text" name="folderRename" />
+        <button>Submit</button>
       </form>
       <form action="/folder/delete/<%= folder.id %>" method="post">
         <button>Delete</button>
