@@ -20,12 +20,22 @@ exports.createFolder = asyncHandler(async (req, res) => {
 });
 
 exports.readFolder = asyncHandler(async (req, res) => {
+  const folders = await prisma.folder.findMany();
   const folder = await prisma.folder.findUnique({
     where: { id: parseInt(req.params.id) },
   });
+  const files = await prisma.file.findMany({
+    where: {
+      folder: {
+        some: { id: parseInt(req.params.id) },
+      },
+    },
+  });
   res.render("folderDetail", {
     title: "Folder Detail",
+    folders: folders,
     folder: folder,
+    files: files
   });
 });
 
