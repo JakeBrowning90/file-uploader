@@ -24,9 +24,12 @@ exports.createFile = asyncHandler(async (req, res) => {
 });
 
 exports.readFile = asyncHandler(async (req, res) => {
-  const file = await prisma.file.findUnique({
-    where: { id: parseInt(req.params.id) },
+  const file = await prisma.file.findUnique({include: {
+    folder: true
+  },
+    where: { id: parseInt(req.params.id) } 
   });
+  console.log(file)
   const folders = await prisma.folder.findMany();
   res.render("fileDetail", {
     title: "File Detail",

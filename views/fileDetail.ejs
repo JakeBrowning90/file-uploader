@@ -7,12 +7,23 @@
       <%- include('partials/formBar') %>
 
       <div class="mainDiv">
+        <!-- <a href="/">Back to Folder</a> -->
         <h1>File Detail</h1>
         <% if (locals.file) { %>
         <p><%= file.name %></p>
-        <a href="">Download</a>
+        <a href="<%= file.url %>" download>Download</a>
         <p>Size: <%= file.size / 1000 %> KB</p>
         <p>Uploaded: <%= file.timestamp %></p>
+
+        <p>
+          Folders: <% if (file.folder.length > 0) { file.folder.forEach((folder) => { %> 
+            <a href="/folder/<%= folder.id %>"><%= folder.name %>  </a>
+            
+          <%})} else { %>
+            None
+          <% } %>  
+        </p>
+
         <!-- <img src="<%= file.url %>"" alt=""> -->
         <form action="/file/delete/<%= file.id %>" method="post">
           <button>Delete</button>
