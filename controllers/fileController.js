@@ -7,14 +7,13 @@ const prisma = new PrismaClient();
 
 // TODO: check authentication for path
 exports.createFile = asyncHandler(async (req, res) => {
-  console.log(req.body)
   await prisma.file.create({
     data: {
       name: req.file.filename,
       size: req.file.size,
       url: req.file.path,
       folder: {
-        connect: { id: parseInt(req.body.folderSelect) },
+        connect: req.body.folderSelect.map((c) => ({ id: parseInt(c) })),
       },
       owner: {
         connect: { id: req.user.id },
@@ -25,17 +24,18 @@ exports.createFile = asyncHandler(async (req, res) => {
 });
 
 exports.readFile = asyncHandler(async (req, res) => {
-  const file = await prisma.file.findUnique({include: {
-    folder: true
-  },
-    where: { id: parseInt(req.params.id) } 
+  const file = await prisma.file.findUnique({
+    include: {
+      folder: true,
+    },
+    where: { id: parseInt(req.params.id) },
   });
   // console.log(file)
   const folders = await prisma.folder.findMany();
   res.render("fileDetail", {
     title: "File Detail",
     file: file,
-    folders: folders
+    folders: folders,
   });
 });
 
