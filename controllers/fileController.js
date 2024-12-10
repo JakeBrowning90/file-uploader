@@ -13,7 +13,7 @@ exports.createFile = asyncHandler(async (req, res) => {
       size: req.file.size,
       url: req.file.path,
       folder: {
-        connect: req.body.folderSelect.map((c) => ({ id: parseInt(c) })),
+        connect: req.body.folderSelect?.map((c) => ({ id: parseInt(c) })) || [],
       },
       owner: {
         connect: { id: req.user.id },
