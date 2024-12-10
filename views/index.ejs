@@ -5,30 +5,31 @@
     <%- include('partials/header') %>
     <main>
       <%- include('partials/formBar') %>
+      <div class="mainDiv">
+        <h1>Index</h1>
 
-      <h1>Index</h1>
+        <ul>
+          <% if (locals.folders) { %> <% folders.forEach((folder) => {%>
+          <li>
+            <a href="/folder/<%= folder.id %>"><%= folder.name %></a>
+          </li>
+          <%})%> <% } %>
+        </ul>
 
-      <ul>
-        <% if (locals.folders) { %> <% folders.forEach((folder) => {%>
-        <li>
-          <a href="/folder/<%= folder.id %>"><%= folder.name %></a>
-        </li>
-        <%})%> <% } %>
-      </ul>
-
-      <ul>
-        <% if (locals.files) { %> <% files.forEach((file) => {%>
-        <li>
-          <p><%= file.name %></p>
-          <p><%= file.size / 1000 %> KB</p>
-          <p><%= file.timestamp %></p>
-          <!-- <img src="<%= file.url %>"" alt=""> -->
-          <form action="/file/delete/<%= file.id %>" method="post">
-            <button>Delete</button>
-          </form>
-        </li>
-        <%})%> <% } %>
-      </ul>
+        <ul>
+          <% if (locals.files) { %> <% files.forEach((file) => {%>
+          <li>
+            <p><%= file.name %></p>
+            <p><%= file.size / 1000 %> KB</p>
+            <p><%= file.timestamp %></p>
+            <!-- <img src="<%= file.url %>"" alt=""> -->
+            <form action="/file/delete/<%= file.id %>" method="post">
+              <button>Delete</button>
+            </form>
+          </li>
+          <%})%> <% } %>
+        </ul>
+      </div>
     </main>
   </body>
 </html>

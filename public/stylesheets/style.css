@@ -26,3 +26,8 @@ img {
   display: flex;
   flex-direction: column;
 }
+
+.mainDiv {
+  display: flex;
+  flex-direction: column;
+}
