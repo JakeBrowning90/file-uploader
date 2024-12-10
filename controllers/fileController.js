@@ -7,6 +7,7 @@ const prisma = new PrismaClient();
 
 // TODO: check authentication for path
 exports.createFile = asyncHandler(async (req, res) => {
+  console.log(req.body)
   await prisma.file.create({
     data: {
       name: req.file.filename,
@@ -29,7 +30,7 @@ exports.readFile = asyncHandler(async (req, res) => {
   },
     where: { id: parseInt(req.params.id) } 
   });
-  console.log(file)
+  // console.log(file)
   const folders = await prisma.folder.findMany();
   res.render("fileDetail", {
     title: "File Detail",

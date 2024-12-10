@@ -3,7 +3,7 @@
     <label for="file">New File</label>
     <input type="file" name="file" required />
     <label for="folderSelect">Folder:</label>
-    <select name="folderSelect" id="folderSelect">
+    <select name="folderSelect" id="folderSelect" multiple>
       <option value="">None</option>
       <% if (locals.folders) { %> <% folders.forEach((folder) => {%>
       <option value="<%= folder.id %>"><%= folder.name %></option>
