@@ -9,6 +9,7 @@ router.post("/create", fileController.createFile);
 // Read ALL files
 
 // Read ONE file
+router.get("/:id", fileController.readFile);
 
 // Update file
 

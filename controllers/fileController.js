@@ -23,6 +23,18 @@ exports.createFile = asyncHandler(async (req, res) => {
   res.redirect("/");
 });
 
+exports.readFile = asyncHandler(async (req, res) => {
+  const file = await prisma.file.findUnique({
+    where: { id: parseInt(req.params.id) },
+  });
+  const folders = await prisma.folder.findMany();
+  res.render("fileDetail", {
+    title: "File Detail",
+    file: file,
+    folders: folders
+  });
+});
+
 exports.deleteFile = asyncHandler(async (req, res) => {
   await prisma.file.delete({
     where: {

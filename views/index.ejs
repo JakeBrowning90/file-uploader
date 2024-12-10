@@ -19,13 +19,13 @@
         <ul>
           <% if (locals.files) { %> <% files.forEach((file) => {%>
           <li>
-            <p><%= file.name %></p>
-            <p><%= file.size / 1000 %> KB</p>
-            <p><%= file.timestamp %></p>
+            <a href="/file/<%= file.id %>"><%= file.name %></a>
+            <!-- <p><%= file.size / 1000 %> KB</p> -->
+            <!-- <p><%= file.timestamp %></p> -->
             <!-- <img src="<%= file.url %>"" alt=""> -->
-            <form action="/file/delete/<%= file.id %>" method="post">
+            <!-- <form action="/file/delete/<%= file.id %>" method="post">
               <button>Delete</button>
-            </form>
+            </form> -->
           </li>
           <%})%> <% } %>
         </ul>

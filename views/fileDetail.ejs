@@ -4,7 +4,21 @@
   <body>
     <%- include('partials/header') %>
     <main>
+      <%- include('partials/formBar') %>
+
+      <div class="mainDiv">
         <h1>File Detail</h1>
+        <% if (locals.file) { %>
+        <p><%= file.name %></p>
+        <a href="">Download</a>
+        <p>Size: <%= file.size / 1000 %> KB</p>
+        <p>Uploaded: <%= file.timestamp %></p>
+        <!-- <img src="<%= file.url %>"" alt=""> -->
+        <form action="/file/delete/<%= file.id %>" method="post">
+          <button>Delete</button>
+        </form>
+        <% } %>
+      </div>
     </main>
   </body>
 </html>
