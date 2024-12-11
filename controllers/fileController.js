@@ -7,7 +7,10 @@ const prisma = new PrismaClient();
 
 // TODO: check authentication for path
 exports.createFile = asyncHandler(async (req, res) => {
-  if (!Array.isArray(req.body.folderSelect) && req.body.folderSelect != undefined) {
+  if (
+    !Array.isArray(req.body.folderSelect) &&
+    req.body.folderSelect != undefined
+  ) {
     req.body.folderSelect = [req.body.folderSelect];
   }
   console.log(req.body.folderSelect);
@@ -49,7 +52,23 @@ exports.readFile = asyncHandler(async (req, res) => {
 });
 
 exports.editFile = asyncHandler(async (req, res) => {
-  console.log(req.body);
+  if (
+    !Array.isArray(req.body.folderUpdate) &&
+    req.body.folderUpdate != undefined
+  ) {
+    req.body.folderUpdate = [req.body.folderUpdate];
+  }
+
+  await prisma.file.update({
+    where: {
+      id: parseInt(req.params.id),
+    },
+    data: {
+      folder: {
+        set: [],
+      },
+    },
+  });
 
   await prisma.file.update({
     where: {
@@ -61,7 +80,7 @@ exports.editFile = asyncHandler(async (req, res) => {
       },
     },
   });
-  res.redirect("/");
+  res.redirect(`/file/${req.params.id}`);
 });
 
 exports.deleteFile = asyncHandler(async (req, res) => {
