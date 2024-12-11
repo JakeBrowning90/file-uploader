@@ -7,7 +7,6 @@
       <%- include('partials/formBar') %>
 
       <div class="mainDiv">
-        <!-- <a href="/">Back to Folder</a> -->
         <h1>File Detail</h1>
         <% if (locals.file) { %>
         <p><%= file.name %></p>
@@ -25,6 +24,15 @@
         </p>
 
         <!-- <img src="<%= file.url %>"" alt=""> -->
+        <form action="/file/edit/<%= file.id %>" method="post">
+          <label for="folderUpdate">Edit Folders:</label>
+          <select name="folderUpdate" id="folderUpdate" multiple>
+            <% if (locals.folders) { %> <% folders.forEach((folder) => {%>
+            <option value="<%= folder.id %>"><%= folder.name %></option>
+            <%})%> <% } %>
+          </select>          
+          <button>Submit</button>
+        </form>
         <form action="/file/delete/<%= file.id %>" method="post">
           <button>Delete</button>
         </form>

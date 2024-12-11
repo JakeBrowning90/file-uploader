@@ -12,6 +12,7 @@ router.post("/create", fileController.createFile);
 router.get("/:id", fileController.readFile);
 
 // Update file
+router.post("/edit/:id", fileController.editFile);
 
 // Delete file
 router.post("/delete/:id", fileController.deleteFile);

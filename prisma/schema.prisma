@@ -13,7 +13,6 @@ model User {
   password   String 
   files File[]  
   folders Folder[]  
-
 }
 
 model File {
