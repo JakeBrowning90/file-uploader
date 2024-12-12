@@ -70,6 +70,9 @@ exports.getIndex = asyncHandler(async (req, res) => {
 });
 
 exports.getSignup = asyncHandler(async (req, res) => {
+  if (req.user) {
+    res.redirect("/")
+  }
   res.render("signup", { title: "File Uploader - Signup" });
 });
 
@@ -107,6 +110,9 @@ exports.postSignup = [
 ];
 
 exports.getLogin = asyncHandler(async (req, res) => {
+  if (req.user) {
+    res.redirect("/")
+  }
   res.render("login", { title: "File Uploader - Login" });
 });
 
@@ -118,6 +124,9 @@ exports.postLogin = [
 ];
 
 exports.getLogout = asyncHandler(async (req, res) => {
+  if (!req.user) {
+    res.redirect("/")
+  }
   req.logout((err) => {
     if (err) {
       return next(err);

@@ -6,6 +6,9 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 exports.createFolder = asyncHandler(async (req, res) => {
+  if (!req.user) {
+    res.redirect("/login")
+  }
   // TODO: Validate folder name
 
   await prisma.folder.create({
@@ -20,6 +23,9 @@ exports.createFolder = asyncHandler(async (req, res) => {
 });
 
 exports.readFolder = asyncHandler(async (req, res) => {
+  if (!req.user) {
+    res.redirect("/login")
+  }
   const folders = await prisma.folder.findMany();
   const folder = await prisma.folder.findUnique({
     where: { id: parseInt(req.params.id) },
@@ -40,6 +46,9 @@ exports.readFolder = asyncHandler(async (req, res) => {
 });
 
 exports.editFolder = asyncHandler(async (req, res) => {
+  if (!req.user) {
+    res.redirect("/login")
+  }
   // TODO: Validate new name
   await prisma.folder.update({
     where: { id: parseInt(req.params.id) },
@@ -51,6 +60,9 @@ exports.editFolder = asyncHandler(async (req, res) => {
 });
 
 exports.deleteFolder = asyncHandler(async (req, res) => {
+  if (!req.user) {
+    res.redirect("/login")
+  }
   await prisma.folder.delete({
     where: {
       id: parseInt(req.params.id),

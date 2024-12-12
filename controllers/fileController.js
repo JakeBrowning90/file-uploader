@@ -36,6 +36,9 @@ exports.createFile = asyncHandler(async (req, res) => {
 });
 
 exports.readFile = asyncHandler(async (req, res) => {
+  if (!req.user) {
+    res.redirect("/login")
+  }
   const file = await prisma.file.findUnique({
     include: {
       folder: true,
@@ -52,6 +55,9 @@ exports.readFile = asyncHandler(async (req, res) => {
 });
 
 exports.editFile = asyncHandler(async (req, res) => {
+  if (!req.user) {
+    res.redirect("/login")
+  }
   if (
     !Array.isArray(req.body.folderUpdate) &&
     req.body.folderUpdate != undefined
@@ -84,6 +90,9 @@ exports.editFile = asyncHandler(async (req, res) => {
 });
 
 exports.deleteFile = asyncHandler(async (req, res) => {
+  if (!req.user) {
+    res.redirect("/login")
+  }
   await prisma.file.delete({
     where: {
       id: parseInt(req.params.id),
