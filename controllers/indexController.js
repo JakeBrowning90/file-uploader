@@ -44,9 +44,24 @@ passport.deserializeUser(async (id, done) => {
 
 exports.getIndex = asyncHandler(async (req, res) => {
   //TODO: Redirect to login if no current user
+  if (!req.user) {
+    res.redirect("/login")
+  }
   //TODO: Only display files/folders for current user
-  const folders = await prisma.folder.findMany();
-  const files = await prisma.file.findMany();
+  const folders = await prisma.folder.findMany({
+    where: {
+      owner: {
+        is: { id: parseInt(req.user.id) },
+      },
+    },
+  });
+  const files = await prisma.file.findMany({
+    where: {
+      owner: {
+        is: { id: parseInt(req.user.id) },
+      },
+    },
+  });
   res.render("index", {
     title: "File Uploader - Home",
     folders: folders,
