@@ -1,30 +1,37 @@
 const { validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 // TODO: validateFolderForm
-// const validateFolderForm = require("../middleware/validateFolderForm");
+const validateFolderForm = require("../middleware/validateFolderForm");
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-exports.createFolder = asyncHandler(async (req, res) => {
-  if (!req.user) {
-    res.redirect("/login")
-  }
+exports.createFolder = [
   // TODO: Validate folder name
+  validateFolderForm,
+  asyncHandler(async (req, res) => {
+    if (!req.user) {
+      res.redirect("/login");
+    }
+    const errors = validationResult(req);
 
-  await prisma.folder.create({
-    data: {
-      name: req.body.folderCreate,
-      owner: {
-        connect: { id: req.user.id },
+    if (!errors.isEmpty()) {
+    console.log(errors)
+    }
+    await prisma.folder.create({
+      data: {
+        name: req.body.folderCreate,
+        owner: {
+          connect: { id: req.user.id },
+        },
       },
-    },
-  });
-  res.redirect("/");
-});
+    });
+    res.redirect("/");
+  }),
+];
 
 exports.readFolder = asyncHandler(async (req, res) => {
   if (!req.user) {
-    res.redirect("/login")
+    res.redirect("/login");
   }
   const folders = await prisma.folder.findMany();
   const folder = await prisma.folder.findUnique({
@@ -41,13 +48,13 @@ exports.readFolder = asyncHandler(async (req, res) => {
     title: "Folder Detail",
     folders: folders,
     folder: folder,
-    files: files
+    files: files,
   });
 });
 
 exports.editFolder = asyncHandler(async (req, res) => {
   if (!req.user) {
-    res.redirect("/login")
+    res.redirect("/login");
   }
   // TODO: Validate new name
   await prisma.folder.update({
@@ -61,7 +68,7 @@ exports.editFolder = asyncHandler(async (req, res) => {
 
 exports.deleteFolder = asyncHandler(async (req, res) => {
   if (!req.user) {
-    res.redirect("/login")
+    res.redirect("/login");
   }
   await prisma.folder.delete({
     where: {
