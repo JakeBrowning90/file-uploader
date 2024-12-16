@@ -72,7 +72,7 @@ exports.editFile = asyncHandler(async (req, res) => {
     ) {
       req.body.folderUpdate = [req.body.folderUpdate];
     }
-
+    // Change file's folders
     await prisma.file.update({
       where: {
         id: parseInt(req.params.id),
