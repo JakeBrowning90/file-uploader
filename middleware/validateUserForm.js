@@ -1,4 +1,6 @@
 const { body } = require("express-validator");
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
 
 const validateUserForm = [
     body("email")
@@ -6,7 +8,17 @@ const validateUserForm = [
       .isEmail()
       .withMessage("Invalid email address format.")
       .isLength({ min: 1, max: 50 })
-      .withMessage("Email must contain between 1 and 50 characters."),
+      .withMessage("Email must contain between 1 and 50 characters.")
+      .custom(async (value) => {
+        const existingUsername = await prisma.user.findUnique({
+          where: {
+            email: value,
+          },
+        });
+        if (existingUsername) {
+          throw new Error("Username already in use.");
+        }
+      }),
     body("password")
       .trim()
       .isLength({ min: 1, max: 20 })
