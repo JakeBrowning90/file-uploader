@@ -43,37 +43,39 @@ passport.deserializeUser(async (id, done) => {
 });
 
 exports.getIndex = asyncHandler(async (req, res) => {
-  //TODO: Redirect to login if no current user
-  if (!req.user) {
-    res.redirect("/login")
+  if (req.user) {
+    // Only display files/folders for current user
+    const folders = await prisma.folder.findMany({
+      where: {
+        owner: {
+          is: { id: parseInt(req.user.id) },
+        },
+      },
+    });
+    const files = await prisma.file.findMany({
+      where: {
+        owner: {
+          is: { id: parseInt(req.user.id) },
+        },
+      },
+    });
+    res.render("index", {
+      title: "File Uploader - Home",
+      folders: folders,
+      files: files,
+    });
+  } else {
+    // Redirect to login if no current user
+    res.redirect("/login");
   }
-  //TODO: Only display files/folders for current user
-  const folders = await prisma.folder.findMany({
-    where: {
-      owner: {
-        is: { id: parseInt(req.user.id) },
-      },
-    },
-  });
-  const files = await prisma.file.findMany({
-    where: {
-      owner: {
-        is: { id: parseInt(req.user.id) },
-      },
-    },
-  });
-  res.render("index", {
-    title: "File Uploader - Home",
-    folders: folders,
-    files: files,
-  });
 });
 
 exports.getSignup = asyncHandler(async (req, res) => {
   if (req.user) {
-    res.redirect("/")
+    res.redirect("/");
+  } else {
+    res.render("signup", { title: "File Uploader - Signup" });
   }
-  res.render("signup", { title: "File Uploader - Signup" });
 });
 
 exports.postSignup = [
@@ -111,9 +113,10 @@ exports.postSignup = [
 
 exports.getLogin = asyncHandler(async (req, res) => {
   if (req.user) {
-    res.redirect("/")
+    res.redirect("/");
+  } else {
+    res.render("login", { title: "File Uploader - Login" });
   }
-  res.render("login", { title: "File Uploader - Login" });
 });
 
 exports.postLogin = [
@@ -124,15 +127,16 @@ exports.postLogin = [
 ];
 
 exports.getLogout = asyncHandler(async (req, res) => {
-  if (!req.user) {
-    res.redirect("/")
-  }
-  req.logout((err) => {
-    if (err) {
-      return next(err);
-    }
+  if (req.user) {
+    req.logout((err) => {
+      if (err) {
+        return next(err);
+      }
+      res.redirect("/");
+    });
+  } else {
     res.redirect("/");
-  });
+  }
 });
 
 exports.getAbout = asyncHandler(async (req, res) => {
