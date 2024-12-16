@@ -10,19 +10,19 @@ exports.createFolder = [
   validateFolderForm,
   asyncHandler(async (req, res) => {
     if (req.user) {
-      const errors = validationResult(req);
-
-      if (!errors.isEmpty()) {
-        res.json(errors);
-      }
-      await prisma.folder.create({
-        data: {
-          name: req.body.folderCreate,
-          owner: {
-            connect: { id: req.user.id },
-          },
-        },
-      });
+      
+      // const errors = validationResult(req);
+      // if (!errors.isEmpty()) {
+      //   res.json(errors);
+      // }
+      // await prisma.folder.create({
+      //   data: {
+      //     name: req.body.folderCreate,
+      //     owner: {
+      //       connect: { id: req.user.id },
+      //     },
+      //   },
+      // });
       res.redirect("/");
     } else {
       res.redirect("/login");
@@ -62,7 +62,7 @@ exports.readFolder = asyncHandler(async (req, res) => {
 
 exports.editFolder = asyncHandler(async (req, res) => {
   if (req.user) {
-    // TODO: Validate new name
+    // TODO: Validate new folder name
     await prisma.folder.update({
       where: { id: parseInt(req.params.id) },
       data: {
