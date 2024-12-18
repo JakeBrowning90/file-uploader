@@ -1,5 +1,9 @@
+require("dotenv").config();
+
 const express = require("express");
 const multer = require("multer");
+const cloudinary = require("cloudinary").v2;
+const streamifier = require("streamifier");
 
 const expressSession = require("express-session");
 const passport = require("passport");
@@ -7,6 +11,8 @@ const { PrismaSessionStore } = require("@quixo3/prisma-session-store");
 const { PrismaClient } = require("@prisma/client");
 
 const app = express();
+const upload = multer();
+
 const path = require("node:path");
 
 const assetsPath = path.join(__dirname, "public");
@@ -32,23 +38,52 @@ app.use(
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, 'public/files/')
-)},
-  filename: function (req, file, cb) {
-    cb(null, file.originalname)
-  }
-})
+// Cloud upload
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+app.post(["/file/create"], upload.single("file"), async (req, res, next) => {
+  let streamUpload = (req) => {
+    return new Promise((resolve, reject) => {
+      let stream = cloudinary.uploader.upload_stream((error, result) => {
+        if (result) {
+          resolve(result);
+        } else {
+          reject(error);
+        }
+      });
 
-// // const upload = multer({ dest: path.join(__dirname, 'uploads/') });
-const upload = multer({ storage: storage });
-app.post(['/file/create/'], upload.single('file'), function (req, res, next) {
-  // req.file is the `image` file
-  // req.body will hold the text fields, if there were any
-  console.log(req.file, req.body);
+      streamifier.createReadStream(req.file.buffer).pipe(stream);
+    });
+  };
+
+  async function upload(req) {
+    let result = await streamUpload(req);
+    res.locals.result = result;
+  }
+  await upload(req);
   next();
-})
+});
+
+// Local upload
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, path.join(__dirname, "public/files/"));
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, file.originalname);
+//   },
+// });
+
+// const upload = multer({ storage: storage });
+// app.post(["/file/create/"], upload.single("file"), function (req, res, next) {
+//   // req.file is the `image` file
+//   // req.body will hold the text fields, if there were any
+//   console.log(req.file, req.body);
+//   next();
+// });
 
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;

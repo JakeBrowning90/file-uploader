@@ -10,7 +10,7 @@
         <h1>File Detail</h1>
         <% if (locals.file) { %>
         <p><%= file.name %></p>
-        <a href="<%= file.url %>" download>Download</a>
+        <a href="<%= file.url %>" download="<%= file.name %>">Download</a>
         <p>Size: <%= file.size / 1000 %> KB</p>
         <p>Uploaded: <%= file.timestamp %></p>
 
