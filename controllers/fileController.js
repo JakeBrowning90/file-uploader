@@ -7,9 +7,8 @@ const prisma = new PrismaClient();
 
 // TODO: check authentication for path
 exports.createFile = asyncHandler(async (req, res) => {
-
   // console.log(req.file)
-  // console.log(res.locals.result)
+  // console.log(res.locals.result);
 
   if (req.user) {
     if (
@@ -23,6 +22,8 @@ exports.createFile = asyncHandler(async (req, res) => {
         name: req.file.originalname,
         size: req.file.size,
         url: res.locals.result.secure_url,
+        publicId: res.locals.result.public_id,
+
         folder: {
           ...(req.body.folderSelect
             ? {
@@ -58,6 +59,7 @@ exports.readFile = asyncHandler(async (req, res) => {
         },
       },
     });
+    // console.log(file);
     res.render("fileDetail", {
       title: "File Detail",
       file: file,
@@ -112,8 +114,7 @@ exports.deleteFile = asyncHandler(async (req, res) => {
         id: parseInt(req.params.id),
       },
     });
-    console.log("File deleted!");
-    res.redirect("/");
+  res.redirect("/");
   } else {
     res.redirect("/login");
   }

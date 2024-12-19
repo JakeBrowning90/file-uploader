@@ -34,7 +34,7 @@
           <button>Submit</button>
         </form>
         <form action="/file/delete/<%= file.id %>" method="post">
-          <button>Delete</button>
+          <button name="publicId" value="<%= file.publicId %>">Delete</button>
         </form>
         <% } %>
       </div>

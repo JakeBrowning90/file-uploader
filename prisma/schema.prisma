@@ -21,6 +21,7 @@ model File {
   size   Int
   timestamp   DateTime @default(now())
   url  String  
+  publicId  String  
   owner User @relation(fields: [ownerId], references: [id])
   ownerId Int
   folder Folder[]

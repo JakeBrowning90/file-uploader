@@ -38,12 +38,13 @@ app.use(
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
-// Cloud upload
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
+
+// Cloud upload
 app.post(["/file/create"], upload.single("file"), async (req, res, next) => {
   let streamUpload = (req) => {
     return new Promise((resolve, reject) => {
@@ -67,23 +68,14 @@ app.post(["/file/create"], upload.single("file"), async (req, res, next) => {
   next();
 });
 
-// Local upload
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, path.join(__dirname, "public/files/"));
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, file.originalname);
-//   },
-// });
+// Delete from Cloudinary
+app.post(["/file/delete/:id"], async (req, res, next) => {
+  cloudinary.uploader
+    .destroy(req.body.publicId)
+    .then((result) => console.log(result));
+  next();
+});
 
-// const upload = multer({ storage: storage });
-// app.post(["/file/create/"], upload.single("file"), function (req, res, next) {
-//   // req.file is the `image` file
-//   // req.body will hold the text fields, if there were any
-//   console.log(req.file, req.body);
-//   next();
-// });
 
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
