@@ -1,19 +1,56 @@
+:root {
+  --color-2: rgb(215, 244, 255);
+}
+
 html,
 body {
   height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+header,
+nav,
+nav > div,
+main {
+  display: flex;
+  flex-direction: row;
+}
+
+header,
+.formBar,
+.mainDiv {
+  padding: 10px;
+}
+
+html,
+body,
+.formBar,
+.formBar > form,
+.mainDiv {
   display: flex;
   flex-direction: column;
 }
 
 header {
-  background-color: rgb(218, 218, 255);
+  background-color: var(--color-2);
+  height: 50px;
+}
+
+nav {
+  gap: 5px;
+  width: 100%;
+  /* margin-left: auto; */
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav > div {
+  gap: 5px;
 }
 
 main {
-  background-color: rgb(170, 238, 253);
+  background-color: var(--color-2);
   height: 100%;
-  display: flex;
-  flex-direction: row;
 }
 
 img {
@@ -22,12 +59,20 @@ img {
 
 .formBar,
 .formBar > form {
-  background-color: rgb(168, 168, 212);
-  display: flex;
-  flex-direction: column;
+  background-color: var(--color-2);
+}
+
+.formBar {
+  gap: 10px;
+}
+
+.formBar > form {
+  border: 1px solid black;
 }
 
 .mainDiv {
-  display: flex;
-  flex-direction: column;
+  background-color: white;
+  width: 100%;
+  border-radius: 20px 20px 0 0;
+  margin-right: 10px;
 }

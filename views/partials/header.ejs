@@ -1,15 +1,16 @@
 <header>
   <nav>
     <a href="/">File Uploader</a>
+    <div>
+      <% if (locals.currentUser) { %>
+      <p><%= currentUser.email %></p>
+      <a href="/logout">Logout</a>
+      <% } else { %>
+      <a href="/signup">Sign up</a>
+      <a href="/login">Login</a>
+      <% } %>
 
-    <% if (locals.currentUser) { %>
-    <p><%= currentUser.email %></p>
-    <a href="/logout">Logout</a>
-    <% } else { %>
-    <a href="/signup">Sign up</a>
-    <a href="/login">Login</a>
-    <% } %>
-
-    <a href="/about">About</a>
+      <a href="/about">About</a>
+    </div>
   </nav>
 </header>
