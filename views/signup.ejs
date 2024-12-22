@@ -4,9 +4,10 @@
   <body>
     <%- include('partials/header') %>
     <main>
-      <h1>Signup</h1>
-      <%- include('partials/errors')%>
-      <form action="" method="post">
+      <form action="" method="post" class="userForm">
+        <h1>Signup</h1>
+        <%- include('partials/errors')%>
+
         <label for="email">Email:</label>
         <input
           type="email"

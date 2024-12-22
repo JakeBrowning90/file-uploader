@@ -1,5 +1,6 @@
 :root {
-  --color-2: rgb(215, 244, 255);
+  --color-1: rgb(255, 255, 255);
+  --color-2: rgb(216, 224, 226);
 }
 
 html,
@@ -17,6 +18,7 @@ main {
 }
 
 header,
+.userForm,
 .formBar,
 .mainDiv {
   padding: 10px;
@@ -24,11 +26,17 @@ header,
 
 html,
 body,
+.userForm,
 .formBar,
 .formBar > form,
 .mainDiv {
   display: flex;
   flex-direction: column;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 header {
@@ -54,7 +62,14 @@ main {
 }
 
 img {
-  height: 50px;
+  /* height: 50px; */
+}
+
+.userForm {
+  background-color: var(--color-1);
+  border-radius: 20px;
+  margin: 0 auto auto auto;
+  gap: 5px;
 }
 
 .formBar,
@@ -71,8 +86,15 @@ img {
 }
 
 .mainDiv {
-  background-color: white;
+  background-color: var(--color-1);
   width: 100%;
   border-radius: 20px 20px 0 0;
   margin-right: 10px;
+}
+
+.folderLI {
+  background-color: var(--color-2);
+  padding: 10px;
+  border-radius: 20px;
+  width: min-content;
 }

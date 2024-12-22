@@ -4,8 +4,9 @@
   <body>
     <%- include('partials/header') %>
     <main>
-      <h1>Login</h1>
-      <form action="/login" method="post">
+      <form action="/login" method="post" class="userForm">
+        <h1>Login</h1>
+
         <label for="username">Username:</label>
         <input type="email" name="username" id="username" />
         <label for="password">Password:</label>
