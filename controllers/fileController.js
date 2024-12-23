@@ -48,11 +48,22 @@ exports.readFile = asyncHandler(async (req, res) => {
   if (req.user) {
     const file = await prisma.file.findUnique({
       include: {
-        folder: true,
+        folder: {
+          orderBy: {
+            name: "asc",
+          },
+          select: {
+            name: true,
+          },
+        },
       },
       where: { id: parseInt(req.params.id) },
     });
     const folders = await prisma.folder.findMany({
+      orderBy: {
+        name: "asc",
+      },
+
       where: {
         owner: {
           is: { id: parseInt(req.user.id) },
@@ -114,7 +125,7 @@ exports.deleteFile = asyncHandler(async (req, res) => {
         id: parseInt(req.params.id),
       },
     });
-  res.redirect("/");
+    res.redirect("/");
   } else {
     res.redirect("/login");
   }

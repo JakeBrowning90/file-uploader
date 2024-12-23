@@ -33,6 +33,11 @@ exports.createFolder = [
 exports.readFolder = asyncHandler(async (req, res) => {
   if (req.user) {
     const folders = await prisma.folder.findMany({
+      orderBy: [
+        {
+          name: "asc",
+        },
+      ],
       where: {
         owner: {
           is: { id: parseInt(req.user.id) },
@@ -43,6 +48,9 @@ exports.readFolder = asyncHandler(async (req, res) => {
       where: { id: parseInt(req.params.id) },
     });
     const files = await prisma.file.findMany({
+      orderBy: {
+        name: "asc",
+      },
       where: {
         folder: {
           some: { id: parseInt(req.params.id) },

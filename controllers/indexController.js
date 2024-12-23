@@ -46,6 +46,9 @@ exports.getIndex = asyncHandler(async (req, res) => {
   if (req.user) {
     // Only display files/folders for current user
     const folders = await prisma.folder.findMany({
+      orderBy: {
+        name: "asc",
+      },
       where: {
         owner: {
           is: { id: parseInt(req.user.id) },
@@ -53,6 +56,9 @@ exports.getIndex = asyncHandler(async (req, res) => {
       },
     });
     const files = await prisma.file.findMany({
+      orderBy: {
+        name: "asc",
+      },
       where: {
         owner: {
           is: { id: parseInt(req.user.id) },

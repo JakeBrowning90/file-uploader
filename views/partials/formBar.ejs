@@ -1,8 +1,8 @@
 <div class="formBar">
   <form action="/file/create" method="POST" enctype="multipart/form-data">
-    <label for="file">New File</label>
+    <label for="file">New File:</label>
     <input type="file" name="file" required />
-    <label for="folderSelect">Folder:</label>
+    <label for="folderSelect">Folder(s):</label>
     <select name="folderSelect" id="folderSelect" multiple>
       <% if (locals.folders) { %> <% folders.forEach((folder) => {%>
       <option value="<%= folder.id %>"><%= folder.name %></option>
@@ -11,7 +11,7 @@
     <button>Submit</button>
   </form>
   <form action="/folder/create" method="POST">
-    <label for="folderCreate">Folder</label>
+    <label for="folderCreate">New Folder:</label>
     <input type="text" name="folderCreate" required/>
     <button>Submit</button>
   </form>
