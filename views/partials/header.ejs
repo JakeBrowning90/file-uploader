@@ -1,13 +1,15 @@
 <header>
   <nav>
-    <a href="/"><h1>File Uploader</h1></a>
+    <a href="/" class="headerLogo">
+      <img src="/imgs/cloud.svg" alt="">
+      <h1>CloudFiles</h1></a>
     <div>
       <% if (locals.currentUser) { %>
       <p><%= currentUser.email %></p>
-      <a href="/logout">Logout</a>
+      <a href="/logout" class="styledLink">Logout</a>
       <% } else { %>
-      <a href="/signup">Sign up</a>
-      <a href="/login">Login</a>
+      <a href="/signup" class="styledLink">Sign up</a>
+      <a href="/login" class="styledLink">Login</a>
       <% } %>
 
       <a href="/about"><img src="/imgs/about.svg" alt=""></a>

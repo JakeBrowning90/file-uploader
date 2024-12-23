@@ -1,6 +1,11 @@
 :root {
   --color-1: rgb(255, 255, 255);
   --color-2: rgb(216, 224, 226);
+  --color-text: rgb(70, 70, 70);
+}
+
+* {
+  color: var(--color-text);
 }
 
 html,
@@ -9,7 +14,12 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
 header,
+.headerLogo,
 nav,
 nav > div,
 main {
@@ -40,8 +50,13 @@ h1 {
 }
 
 header {
+  /* background-color: rgb(251, 245, 181); */
   background-color: var(--color-2);
   height: 50px;
+}
+
+.headerLogo {
+  align-items: center;
 }
 
 nav {
@@ -98,4 +113,12 @@ img {
   padding: 10px;
   border-radius: 20px;
   width: min-content;
+}
+
+.styledLink {
+  background-color: var(--color-1);
+  font-weight: bold;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 50px;
 }
