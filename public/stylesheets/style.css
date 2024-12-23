@@ -1,12 +1,13 @@
 :root {
   --color-1: rgb(255, 255, 255);
-  --color-2: rgb(216, 224, 226);
+  --color-2: rgb(221, 230, 233);
   --color-text: rgb(70, 70, 70);
   --color-hover: rgb(179, 179, 179);
 }
 
 * {
   color: var(--color-text);
+  box-sizing: border-box;
 }
 
 html,
@@ -30,7 +31,6 @@ main {
 
 header,
 .userForm,
-.formBar,
 .mainDiv {
   padding: 10px;
 }
@@ -52,9 +52,8 @@ h1 {
 }
 
 header {
-  /* background-color: rgb(251, 245, 181); */
   background-color: var(--color-2);
-  height: 50px;
+  height: 60px;
 }
 
 .headerLogo {
@@ -64,7 +63,6 @@ header {
 nav {
   gap: 5px;
   width: 100%;
-  /* margin-left: auto; */
   align-items: center;
   justify-content: space-between;
 }
@@ -96,18 +94,19 @@ img {
   font-weight: bold;
 }
 
-.formBar,
-.formBar > form {
-  background-color: var(--color-2);
-}
-
 .formBar {
+  background-color: var(--color-2);
+  padding: 0 10px;
   gap: 10px;
 }
 
-.formBar > form {
-  border: 1px solid black;
+.formBar > * {
+  background-color: var(--color-1);
+  border-radius: 20px;
+  padding: 10px;
+  gap: 5px;
 }
+
 
 .mainDiv {
   background-color: var(--color-1);
@@ -136,7 +135,6 @@ img {
 
 .fileLI {
   padding: 10px;
-  /* background-color: pink; */
   border-top: 1px solid var(--color-text);
 }
 
