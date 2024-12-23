@@ -88,6 +88,12 @@ img {
   border-radius: 20px;
   margin: 0 auto auto auto;
   gap: 5px;
+  min-width: 400px;
+}
+
+.errorUL > * {
+    color: rgb(152, 0, 0);
+    font-weight: bold;
 }
 
 .formBar,
