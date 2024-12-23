@@ -2,6 +2,7 @@
   --color-1: rgb(255, 255, 255);
   --color-2: rgb(216, 224, 226);
   --color-text: rgb(70, 70, 70);
+  --color-hover: rgb(179, 179, 179);
 }
 
 * {
@@ -39,7 +40,8 @@ body,
 .userForm,
 .formBar,
 .formBar > form,
-.mainDiv {
+.mainDiv,
+.fileUL {
   display: flex;
   flex-direction: column;
 }
@@ -108,11 +110,27 @@ img {
   margin-right: 10px;
 }
 
+.folderUL {
+}
+
 .folderLI {
   background-color: var(--color-2);
   padding: 10px;
   border-radius: 20px;
   width: min-content;
+}
+
+.fileUL {
+}
+
+.fileLI {
+  padding: 10px;
+  /* background-color: pink; */
+  border-top: 1px solid var(--color-text);
+}
+
+.fileLI:hover{
+  background-color: var(--color-2);
 }
 
 .styledLink {
@@ -121,4 +139,9 @@ img {
   text-decoration: none;
   padding: 5px 10px;
   border-radius: 50px;
+}
+
+.folderLI:hover,
+.styledLink:hover {
+  background-color: var(--color-hover);
 }

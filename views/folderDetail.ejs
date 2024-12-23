@@ -20,9 +20,9 @@
         </form>
         <% } %>
 
-        <ul>
+        <ul class="fileUL">
           <% if (locals.files) { %> <% files.forEach((file) => {%>
-          <li>
+          <li class="fileLI">
             <!-- <p><%= file.name %></p> -->
             <a href="/file/<%= file.id %>"><%= file.name %></a>
             <!-- <p><%= file.size / 1000 %> KB</p>
