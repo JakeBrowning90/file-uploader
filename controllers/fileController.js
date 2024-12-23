@@ -54,6 +54,7 @@ exports.readFile = asyncHandler(async (req, res) => {
           },
           select: {
             name: true,
+            id: true
           },
         },
       },
