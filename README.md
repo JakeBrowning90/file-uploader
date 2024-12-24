@@ -30,3 +30,4 @@ Select a file to view its detail page. From here, you can download the file, cha
 ## Credits
 Database hosted by Neon.
 File storage hosted by Cloudinary.
+Icons from Google Fonts.
