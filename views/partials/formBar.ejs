@@ -23,7 +23,14 @@
     </div>
     <div class="newFolderFormBody">
       <label for="folderCreate">Folder Name:</label>
-      <input type="text" name="folderCreate" required />
+      <input
+        type="text"
+        name="folderCreate"
+        required
+        minlength="1"
+        maxlength="20"
+        placeholder="Max. 20 characters"
+      />
       <button>Submit</button>
     </div>
   </form>

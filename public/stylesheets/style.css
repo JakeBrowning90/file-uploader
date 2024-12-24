@@ -35,7 +35,8 @@ nav > div,
 main,
 .newFileFormHeader,
 .newFolderFormHeader,
-.detailTitle {
+.detailTitle,
+.detailFolderList {
   display: flex;
   flex-direction: row;
 }
@@ -163,12 +164,23 @@ img {
   min-width: 80px;
 }
 
+.detailFolderList {
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
 .fileUL {
 }
 
 .fileLI {
-  padding: 10px;
   border-top: 1px solid var(--color-text);
+}
+
+.fileLI > a {
+  margin: 10px;
+  display: inline-block;
+  height: 100%;
+  width: 100%;
 }
 
 .fileLI:hover {
@@ -185,7 +197,7 @@ img {
 }
 
 .mainLink {
-  border: 1px solid var(--color-text)
+  border: 1px solid var(--color-text);
 }
 
 .folderLI:hover,
@@ -195,8 +207,8 @@ img {
 
 .detailHeader,
 .detailHeader > form,
-.detailBody > form  {
-  gap: 5px
+.detailBody > form {
+  gap: 5px;
 }
 
 .deleteBtn {

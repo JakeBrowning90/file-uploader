@@ -16,8 +16,8 @@
           <div class="detailBody">
             <form action="/folder/edit/<%= folder.id %>" method="post">
               <label for="folderRename">Rename Folder:</label>
-              <input type="text" name="folderRename" required />
-              <button>Save</button>
+              <input type="text" name="folderRename" required minlength="1" maxlength="20"  placeholder="Max. 20 characters"/>
+              <button>Save Changes</button>
             </form>
             <hr />
             <form action="/folder/delete/<%= folder.id %>" method="post">

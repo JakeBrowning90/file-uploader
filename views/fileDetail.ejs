@@ -25,22 +25,40 @@
             </form>
             <hr />
             <form action="/file/delete/<%= file.id %>" method="post">
-              <button name="publicId" value="<%= file.publicId %>" class="deleteBtn">Delete File</button>
+              <button
+                name="publicId"
+                value="<%= file.publicId %>"
+                class="deleteBtn"
+              >
+                Delete File
+              </button>
             </form>
             <hr />
-
           </div>
         </div>
-        <p>
-          Folders: <% if (file.folder.length > 0) { file.folder.forEach((folder) => { %>
-          <a href="/folder/<%= folder.id %>" class="styledLink mainLink"><%= folder.name %> </a>
+        <ul class="detailFolderList">
+          <li>
+            <p>Folders: </p>
+          </li>
+          <% if (file.folder.length > 0) { file.folder.forEach((folder) => { %>
+            <li>
+              <a href="/folder/<%= folder.id %>" class="styledLink mainLink"
+                ><%= folder.name %>
+              </a>
+            </li>
+      
 
-          <%})} else { %> None <% } %>
-        </p>
+          <%})} else { %> <p>None</p> <% } %>
+        </ul>
         <p>Size: <%= file.size / 1000 %> KB</p>
         <p>Uploaded: <%= file.timestamp.toUTCString() %></p>
 
-        <a href="<%= file.url %>" download="<%= file.name %>" class="styledLink mainLink">Download</a>
+        <a
+          href="<%= file.url %>"
+          download="<%= file.name %>"
+          class="styledLink mainLink"
+          >Download</a
+        >
 
         <% } %>
       </div>
