@@ -6,10 +6,10 @@
     <div>
       <% if (locals.currentUser) { %>
       <p><%= currentUser.email %></p>
-      <a href="/logout" class="styledLink">Logout</a>
+      <a href="/logout" class="styledLink">Log Out</a>
       <% } else { %>
-      <a href="/signup" class="styledLink">Sign up</a>
-      <a href="/login" class="styledLink">Login</a>
+      <a href="/signup" class="styledLink">Sign Up</a>
+      <a href="/login" class="styledLink">Log In</a>
       <% } %>
 
       <a href="/about"><img src="/imgs/about.svg" alt=""></a>
