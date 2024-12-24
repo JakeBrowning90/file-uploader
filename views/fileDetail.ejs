@@ -7,35 +7,41 @@
       <%- include('partials/formBar') %>
 
       <div class="mainDiv">
-        <h1>File Detail</h1>
         <% if (locals.file) { %>
-        <p><%= file.name %></p>
-        <a href="<%= file.url %>" download="<%= file.name %>">Download</a>
-        <p>Size: <%= file.size / 1000 %> KB</p>
-        <p>Uploaded: <%= file.timestamp %></p>
+        <div class="detailHeader">
+          <div class="detailTitle">
+            <h1>File: <%= file.name %></h1>
+            <img id="fileEditToggle" src="/imgs/arrowdown.svg" alt="" />
+          </div>
+          <div class="detailBody">
+            <form action="/file/edit/<%= file.id %>" method="post">
+              <label for="folderUpdate">Edit Folders:</label>
+              <select name="folderUpdate" id="folderUpdate" multiple>
+                <% if (locals.folders) { %> <% folders.forEach((folder) => {%>
+                <option value="<%= folder.id %>"><%= folder.name %></option>
+                <%})%> <% } %>
+              </select>
+              <button>Save Changes</button>
+            </form>
+            <hr />
+            <form action="/file/delete/<%= file.id %>" method="post">
+              <button name="publicId" value="<%= file.publicId %>" class="deleteBtn">Delete File</button>
+            </form>
+            <hr />
 
+          </div>
+        </div>
         <p>
-          Folders: <% if (file.folder.length > 0) { file.folder.forEach((folder) => { %> 
-            <a href="/folder/<%= folder.id %>"><%= folder.name %>  </a>
-            
-          <%})} else { %>
-            None
-          <% } %>  
-        </p>
+          Folders: <% if (file.folder.length > 0) { file.folder.forEach((folder) => { %>
+          <a href="/folder/<%= folder.id %>" class="styledLink mainLink"><%= folder.name %> </a>
 
-        <!-- <img src="<%= file.url %>"" alt=""> -->
-        <form action="/file/edit/<%= file.id %>" method="post">
-          <label for="folderUpdate">Edit Folders:</label>
-          <select name="folderUpdate" id="folderUpdate" multiple>
-            <% if (locals.folders) { %> <% folders.forEach((folder) => {%>
-            <option value="<%= folder.id %>"><%= folder.name %></option>
-            <%})%> <% } %>
-          </select>          
-          <button>Submit</button>
-        </form>
-        <form action="/file/delete/<%= file.id %>" method="post">
-          <button name="publicId" value="<%= file.publicId %>">Delete</button>
-        </form>
+          <%})} else { %> None <% } %>
+        </p>
+        <p>Size: <%= file.size / 1000 %> KB</p>
+        <p>Uploaded: <%= file.timestamp.toUTCString() %></p>
+
+        <a href="<%= file.url %>" download="<%= file.name %>" class="styledLink mainLink">Download</a>
+
         <% } %>
       </div>
     </main>

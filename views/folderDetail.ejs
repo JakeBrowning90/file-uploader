@@ -6,18 +6,27 @@
     <main>
       <%- include('partials/formBar') %>
       <div class="mainDiv">
-        <a href="/">Back to Home</a>
+        <a href="/" class="styledLink mainLink">Home</a>
         <% if (locals.folder) { %>
-        <h1>Folder: <%= folder.name %></h1>
-        <form action="/folder/edit/<%= folder.id %>" method="post">
-          <label for="folderRename">Rename Folder:</label>
-          <input type="text" name="folderRename" required />
-          <button>Save</button>
-        </form>
-        <form action="/folder/delete/<%= folder.id %>" method="post">
-          <button>Delete</button>
-        </form>
+        <div class="detailHeader">
+          <div class="detailTitle">
+            <h1>Folder: <%= folder.name %></h1>
+            <img id="formEditToggle" src="/imgs/arrowdown.svg" alt="" />
+          </div>
+          <div class="detailBody">
+            <form action="/folder/edit/<%= folder.id %>" method="post">
+              <label for="folderRename">Rename Folder:</label>
+              <input type="text" name="folderRename" required />
+              <button>Save</button>
+            </form>
+            <hr />
+            <form action="/folder/delete/<%= folder.id %>" method="post">
+              <button class="deleteBtn">Delete Folder</button>
+            </form>
+          </div>
+        </div>
         <% } %>
+
         <ul class="fileUL">
           <% if (locals.files) { %> <% files.forEach((file) => {%>
           <li class="fileLI">
