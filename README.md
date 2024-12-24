@@ -16,6 +16,8 @@ I thought of adding a search feature, which I've done for other projects, but he
 
 When clicking the "download" button, the target file appears in a new tab instead of opening the download manager. I believe this may be an issue with Chrome, but I'll have an easier time testing in a live environment. 
 
+I'd like to give the app a more responsive/mobile friendly design, but have held off until I have more time to polish the style.
+
 ## How to use
 Use the Sign Up button at the top of the screen to create an account. Once you've registered a valid email address and password, you may log in and see the Home page. This is where all of your folders and uploaded files will be visible.  
 
