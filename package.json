@@ -28,5 +28,8 @@
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "@flydotio/dockerfile": "^0.5.9"
+  }
 }
