@@ -4,21 +4,23 @@
   <body>
     <%- include('partials/header') %>
     <main>
-      <div class="userForm">
+      <div class="userForm aboutBlock">
         <h1>About</h1>
         <ul>
           <li>
-            Description
+            This app is a demonstration file storage service, modeled after Google Drive. Once users have registered with an email and password, they may upload and download files, as well as create folders to categorize their files. Users may only see their own uploaded files.
           </li>
           <li>
-            Tech Stack
+            The app is built using Node.js, Express, and Prisma ORM. User authentication uses Passport.js, the database is hosted on Neon, and cloud storage is hosted by Cloudinary.
           </li>
           <li>
-            Disclaimer
+            <p>Please note: This app is for demonstration purposes only, and should not be depended on to securely store and access important files. <strong>Please do not upload anything confidential or private.</strong></p>
           </li>
         </ul>
-        <a href="">Portfolio</a>
-        <a href="">Github</a>
+
+        <a href="https://github.com/JakeBrowning90/file-uploader" target="_blank" class="styledLink mainLink">Project GitHub</a>
+        <a href="https://jakebrowning90.github.io/personal-portfolio/" target="_blank" class="styledLink mainLink">My Portfolio</a>
+
       </div>
     </main>
   </body>

@@ -50,6 +50,7 @@ header,
 html,
 body,
 .userForm,
+.aboutBlock > ul,
 .formBar,
 .formBar > form,
 .newFileFormBody,
@@ -94,8 +95,8 @@ main {
   height: 100%;
 }
 
-img {
-  /* height: 50px; */
+strong {
+  font-weight: bold;
 }
 
 .userForm {
@@ -104,6 +105,14 @@ img {
   margin: 0 auto auto auto;
   gap: 5px;
   min-width: 400px;
+}
+
+.aboutBlock {
+  max-width: 700px;
+}
+
+.aboutBlock > ul {
+  gap: 10px;
 }
 
 .errorUL > * {
