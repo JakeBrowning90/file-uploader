@@ -15,6 +15,16 @@
           </div>
           <div class="detailBody">
             <form action="/file/edit/<%= file.id %>" method="post">
+
+              <label for="fileRename">Title:</label>
+              <input
+                type="text"
+                name="fileRename"
+                id="fileRename"
+                value="<%= file.name %>"
+                required
+              />
+
               <label for="folderUpdate">Edit Folders:</label>
               <select name="folderUpdate" id="folderUpdate" multiple>
                 <% if (locals.folders) { %> <% folders.forEach((folder) => {%>

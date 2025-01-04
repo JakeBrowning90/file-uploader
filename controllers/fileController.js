@@ -108,6 +108,7 @@ exports.editFile = asyncHandler(async (req, res) => {
         id: parseInt(req.params.id),
       },
       data: {
+        name: req.body.fileRename,
         folder: {
           connect:
             req.body.folderUpdate?.map((c) => ({ id: parseInt(c) })) || [],
