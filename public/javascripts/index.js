@@ -66,3 +66,11 @@ const fileEditToggle = document.querySelector("#fileEditToggle");
 if (fileEditToggle) {
   fileEditToggle.addEventListener("click", showFileEdit);
 }
+
+
+// Populate title input with file name by default
+const newFileTitle = document.getElementById("newFileTitle")
+document.getElementById("newFileSelector").addEventListener('change', event => {
+  const file = event.target.files[0];
+  newFileTitle.value = file.name;
+})
