@@ -8,6 +8,7 @@ const prisma = new PrismaClient();
 // TODO: check authentication for path
 exports.createFile = asyncHandler(async (req, res) => {
   // console.log(req.file)
+  // console.log(req.body);
   // console.log(res.locals.result);
   if (req.user) {
     if (

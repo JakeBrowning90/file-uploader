@@ -15,11 +15,20 @@
         required
       />
       <label for="folderSelect">Add to Folder(s):</label>
-      <select name="folderSelect" id="folderSelect" multiple>
+      <!-- <select name="folderSelect" id="folderSelect" multiple>
         <% if (locals.folders) { %> <% folders.forEach((folder) => {%>
         <option value="<%= folder.id %>"><%= folder.name %></option>
         <%})%> <% } %>
-      </select>
+      </select> -->
+
+      <fieldset>
+        <% if (locals.folders) { %> <% folders.forEach((folder) => {%>
+          <input type="checkbox" name="folderSelect" id="<%= folder.name %>" value="<%= folder.id %>" />
+          <label for="<%= folder.name %>"><%= folder.name %></label>
+
+          <%})%> <% } %>
+      </fieldset>
+
       <button>Submit</button>
     </div>
   </form>
