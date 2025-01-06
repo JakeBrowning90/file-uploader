@@ -19,13 +19,18 @@ When clicking the "download" button, the target file appears in a new tab instea
 I'd like to give the app a more responsive/mobile friendly design, but have held off until I have more time to polish the style.
 
 ## How to use
-Use the Sign Up button at the top of the screen to create an account. Once you've registered a valid email address and password, you may log in and see the Home page. This is where all of your folders and uploaded files will be visible.  
+Use the Sign Up button at the top of the screen to create an account, or log into the guest account.
+
+### Guest email: guestuser@gmail.com 
+### Password: fileapp
+
+Once you've registered a valid email address and password, you may log in and see the Home page. This is where all of your folders and uploaded files will be visible.  
 
 Use the forms on the left side of the screen to upload a new file or create a new folder. Note that files can belong to 0, 1, or many folders. 
 
-Select a folder to view all of its contained files. You can also rename or delete the folder. Note that deleting a folder does not delete the contained files.
+Select a folder to view all of its contained files. You can also click the arrow icon next to the folder name to rename or delete the folder. Note that deleting a folder does not delete the contained files.
 
-Select a file to view its detail page. From here, you can download the file, change its folders, or delete it. 
+Select a file to view its detail page. From here, you can download the file or navigate to any of its folders. You can also click the arrow next to the file name to edit the file title and its folders, or delete the file from the database. 
 
 ## Credits
 Database hosted by Neon.
