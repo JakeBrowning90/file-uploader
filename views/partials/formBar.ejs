@@ -8,12 +8,7 @@
       <label for="file">Upload:</label>
       <input type="file" name="file" id="newFileSelector" required />
       <label for="title">Title:</label>
-      <input
-        type="text"
-        name="title"
-        id="newFileTitle"
-        required
-      />
+      <input type="text" name="title" id="newFileTitle" required />
       <label for="folderSelect">Add to Folder(s):</label>
       <!-- <select name="folderSelect" id="folderSelect" multiple>
         <% if (locals.folders) { %> <% folders.forEach((folder) => {%>
@@ -23,10 +18,17 @@
 
       <fieldset>
         <% if (locals.folders) { %> <% folders.forEach((folder) => {%>
-          <input type="checkbox" name="folderSelect" id="<%= folder.name %>" value="<%= folder.id %>" />
+        <div>
+          <input
+            type="checkbox"
+            name="folderSelect"
+            id="<%= folder.name %>"
+            value="<%= folder.id %>"
+          />
           <label for="<%= folder.name %>"><%= folder.name %></label>
+        </div>
 
-          <%})%> <% } %>
+        <%})%> <% } %>
       </fieldset>
 
       <button>Submit</button>

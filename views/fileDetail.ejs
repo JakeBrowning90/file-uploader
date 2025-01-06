@@ -15,7 +15,6 @@
           </div>
           <div class="detailBody">
             <form action="/file/edit/<%= file.id %>" method="post">
-
               <label for="fileRename">Title:</label>
               <input
                 type="text"
@@ -25,12 +24,38 @@
                 required
               />
 
-              <label for="folderUpdate">Edit Folders:</label>
+              <!-- <label for="folderUpdate">Edit Folders:</label>
               <select name="folderUpdate" id="folderUpdate" multiple>
                 <% if (locals.folders) { %> <% folders.forEach((folder) => {%>
                 <option value="<%= folder.id %>"><%= folder.name %></option>
                 <%})%> <% } %>
-              </select>
+              </select> -->
+
+              <fieldset>
+                <% if (locals.folders) { %> <% folders.forEach((folder) => {%>
+                <div>
+                  <% if (file.folder.find(e => e.id === folder.id)) { %>
+                  <input
+                    type="checkbox"
+                    name="folderUpdate"
+                    id="<%= folder.name %>Edit"
+                    value="<%= folder.id %>"
+                    checked
+                  />
+                  <% } else { %>
+                  <input
+                    type="checkbox"
+                    name="folderUpdate"
+                    id="<%= folder.name %>Edit"
+                    value="<%= folder.id %>"
+                  />
+                  <% } %>
+
+                  <label for="<%= folder.name %>Edit"><%= folder.name %></label>
+                </div>
+                <%})%> <% } %>
+              </fieldset>
+
               <button>Save Changes</button>
             </form>
             <hr />
@@ -48,17 +73,18 @@
         </div>
         <ul class="detailFolderList">
           <li>
-            <p>Folders: </p>
+            <p>Folders:</p>
           </li>
           <% if (file.folder.length > 0) { file.folder.forEach((folder) => { %>
-            <li>
-              <a href="/folder/<%= folder.id %>" class="styledLink mainLink"
-                ><%= folder.name %>
-              </a>
-            </li>
-      
+          <li>
+            <a href="/folder/<%= folder.id %>" class="styledLink mainLink"
+              ><%= folder.name %>
+            </a>
+          </li>
 
-          <%})} else { %> <p>None</p> <% } %>
+          <%})} else { %>
+          <p>None</p>
+          <% } %>
         </ul>
         <p>Size: <%= file.size / 1000 %> KB</p>
         <p>Uploaded: <%= file.timestamp.toUTCString() %></p>

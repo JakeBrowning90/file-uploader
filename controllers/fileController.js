@@ -72,7 +72,7 @@ exports.readFile = asyncHandler(async (req, res) => {
         },
       },
     });
-    // console.log(file);
+
     res.render("fileDetail", {
       title: "File Detail",
       file: file,
