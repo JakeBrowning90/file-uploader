@@ -1,12 +1,10 @@
 const { validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
-// TODO: validateFolderForm
 const validateFolderForm = require("../middleware/validateFolderForm");
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 exports.createFolder = [
-  // TODO: Validate folder name
   validateFolderForm,
   asyncHandler(async (req, res) => {
     if (req.user) {

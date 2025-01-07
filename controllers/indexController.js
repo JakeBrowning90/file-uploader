@@ -44,6 +44,8 @@ passport.deserializeUser(async (id, done) => {
 
 exports.getIndex = asyncHandler(async (req, res) => {
   if (req.user) {
+    const query = req.query.searchValue;
+
     // Only display files/folders for current user
     const folders = await prisma.folder.findMany({
       orderBy: {
@@ -52,6 +54,10 @@ exports.getIndex = asyncHandler(async (req, res) => {
       where: {
         owner: {
           is: { id: parseInt(req.user.id) },
+        },
+        name: {
+          contains: query,
+          mode: "insensitive",
         },
       },
     });
@@ -63,10 +69,16 @@ exports.getIndex = asyncHandler(async (req, res) => {
         owner: {
           is: { id: parseInt(req.user.id) },
         },
+        name: {
+          contains: query,
+          mode: "insensitive",
+        },
       },
     });
+
     res.render("index", {
       title: "File Uploader - Home",
+      query: query,
       folders: folders,
       files: files,
     });

@@ -6,7 +6,19 @@
     <main>
       <%- include('partials/formBar') %>
       <div class="mainDiv">
-        <h1>Folders: </h1>
+        <form method="GET" action="/">
+          <button type="submit">
+            <img src="imgs/search.svg" alt="" />
+          </button>
+          <input
+            type="text"
+            name="searchValue"
+            id="searchValue"
+            placeholder="Search my Cloud"
+            value="<%= query %>"
+          />
+        </form>
+        <h1>Folders:</h1>
 
         <ul class="folderUL">
           <% if (locals.folders) { %> <% folders.forEach((folder) => {%>
@@ -18,7 +30,7 @@
           </li>
           <%})%> <% } %>
         </ul>
-        <h1>Files: </h1>
+        <h1>Files:</h1>
         <ul class="fileUL">
           <% if (locals.files) { %> <% files.forEach((file) => {%>
           <li class="fileLI">

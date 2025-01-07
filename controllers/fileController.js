@@ -5,7 +5,6 @@ const asyncHandler = require("express-async-handler");
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-// TODO: check authentication for path
 exports.createFile = asyncHandler(async (req, res) => {
   // console.log(req.file)
   // console.log(req.body);
