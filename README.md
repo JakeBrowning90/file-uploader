@@ -12,8 +12,6 @@ User authentication uses Passport.js, the database is hosted on Neon, and cloud 
 ## Challenges/To-dos
 The primary challenge of this project was incorporating Prisma after months of using raw SQL in other projects. This meant multiple holdups while trying to figure out the particulars of Prisma queries, especially when Joins were involved like when querying a file and also getting its folders.
 
-I thought of adding a search feature, which I've done for other projects, but held off in order to make time for other commitments. I may incorporate this later.
-
 When clicking the "download" button, the target file appears in a new tab instead of opening the download manager. I believe this may be an issue with Chrome, but I'll have an easier time testing in a live environment. 
 
 I'd like to give the app a more responsive/mobile friendly design, but have held off until I have more time to polish the style.

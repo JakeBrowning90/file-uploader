@@ -75,10 +75,21 @@ exports.getIndex = asyncHandler(async (req, res) => {
         },
       },
     });
+    const allFolders = await prisma.folder.findMany({
+      orderBy: {
+        name: "asc",
+      },
+      where: {
+        owner: {
+          is: { id: parseInt(req.user.id) },
+        },
+      },
+    });
 
     res.render("index", {
       title: "File Uploader - Home",
       query: query,
+      allFolders: allFolders,
       folders: folders,
       files: files,
     });

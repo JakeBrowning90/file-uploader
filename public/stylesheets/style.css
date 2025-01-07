@@ -36,7 +36,8 @@ main,
 .newFileFormHeader,
 .newFolderFormHeader,
 .detailTitle,
-.detailFolderList {
+.detailFolderList,
+.searchBar {
   display: flex;
   flex-direction: row;
 }
@@ -222,4 +223,23 @@ strong {
 
 .deleteBtn {
   background-color: rgb(255, 200, 200);
+}
+
+.searchBar {
+  /* background-color: pink; */
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 4px 4px 4px var(--color-hover);
+}
+
+.searchBar > * {
+  padding: 0;
+  background-color: none;
+  border-style: none;
+}
+
+.searchBar > input{
+  width: 100%;
+padding: 0 10px;
+border-radius: 20px;
 }
