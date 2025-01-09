@@ -35,7 +35,7 @@
               </select> -->
 
               <fieldset>
-                <% if (locals.folders) { %> <% folders.forEach((folder) => {%>
+                <% if (locals.allFolders) { %> <% allFolders.forEach((folder) => {%>
                 <div>
                   <% if (file.folder.find(e => e.id === folder.id)) { %>
                   <input

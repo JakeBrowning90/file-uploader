@@ -54,17 +54,27 @@ exports.readFile = asyncHandler(async (req, res) => {
           },
           select: {
             name: true,
-            id: true
+            id: true,
           },
         },
       },
       where: { id: parseInt(req.params.id) },
     });
-    const folders = await prisma.folder.findMany({
+    // const folders = await prisma.folder.findMany({
+    //   orderBy: {
+    //     name: "asc",
+    //   },
+
+    //   where: {
+    //     owner: {
+    //       is: { id: parseInt(req.user.id) },
+    //     },
+    //   },
+    // });
+    const allFolders = await prisma.folder.findMany({
       orderBy: {
         name: "asc",
       },
-
       where: {
         owner: {
           is: { id: parseInt(req.user.id) },
@@ -75,7 +85,8 @@ exports.readFile = asyncHandler(async (req, res) => {
     res.render("fileDetail", {
       title: "File Detail",
       file: file,
-      folders: folders,
+      // folders: folders,
+      allFolders: allFolders,
     });
   } else {
     res.redirect("/login");

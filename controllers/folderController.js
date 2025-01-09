@@ -55,11 +55,23 @@ exports.readFolder = asyncHandler(async (req, res) => {
         },
       },
     });
+    const allFolders = await prisma.folder.findMany({
+      orderBy: {
+        name: "asc",
+      },
+      where: {
+        owner: {
+          is: { id: parseInt(req.user.id) },
+        },
+      },
+    });
+
     res.render("folderDetail", {
       title: "Folder Detail",
       folders: folders,
       folder: folder,
       files: files,
+      allFolders: allFolders,
     });
   } else {
     res.redirect("/login");
